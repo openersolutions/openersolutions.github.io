@@ -1,0 +1,25 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "Website for Opener",
+  "scripts": {
+    "build": "npm run clean && gulp build",
+    "watch": "npm run clean && gulp watch",
+    "clean": "rimraf ./dist"
+  },
+  "devDependencies": {
+    "event-stream": "^3.3.4",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-inject": "^4.1.0",
+    "gulp-inject-string": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.0.0",
+    "gulp-sourcemaps": "^1.9.1",
+    "rimraf": "^2.5.4"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "normalize-scss": "^6.0.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+    "jobs": [
+        {
+            "title": "Controls Software Engineer",
+            "path": "controls-software-engineer.html"
+        },
+        {
+            "title": "Electrical Design Engineer",
+            "path": "electrical-design-engineer.html"
+        },
+        {
+            "title": "Mechanical Engineer",
+            "path": "mechanical-engineer.html"
+        }
+    ]
+}

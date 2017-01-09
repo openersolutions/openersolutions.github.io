@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Opener</title>
+    <meta name="description" content="We're making modern avionics systems better.">
+    <meta name="author" content="Opener">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images//apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images//apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images//apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images//apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images//apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images//apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images//apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images//apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images//android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images//favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images//favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images//favicon-16x16.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200:400,700|Ubuntu" rel="stylesheet">
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+<body>
+<header>
+    <div class="bg"></div>
+
+    <div class="header">
+        <h1>Opener</h1>
+        <div class="tagline">
+            <h2>Soar with us</h2>
+            <h3>We're a passionate team advancing the future of aviation.</h3>
+        </div>
+        <div class="arrow" onclick="smoothScroll('jobs')"></div>
+    </div>
+</header>
+<section class="jobs" id="jobs">
+    <div class="jobs-section-container">
+        <h4>We're hiring</h4>
+        <div>
+            <!-- inject:jobs:html -->
+            <!-- endinject -->
+        </div>
+    </div>
+</section>
+<section class="about-us" id="about-us">
+    <div>
+        <h4>About us</h4>
+        <div>
+            <p>
+                We are a small company innovating at the leading edge of UAV technology, poised to transform the
+                industry.
+            </p>
+            <p>
+                Located in the heart of Silicon Valley, we are actively adding to our team of engineers. We
+                value bright individuals with a strong DIY, hands-on attitude, who work hard and thrive in a fast-paced
+                environment.
+            </p>
+            <p>
+                Join us and influence the future of aviation.
+            </p>
+            <div class="contact">
+                <a href="mailto:info@openersolutions.com" title="info@openersolutions.com">info@openersolutions.com</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <a class="logotype"></a>
+</footer>
+<!-- inject:js -->
+<!-- endinject -->
+<script type="text/javascript">
+    var smoothScroll = function (elementId) {
+        var MIN_PIXELS_PER_STEP = 16;
+        var MAX_SCROLL_STEPS = 30;
+        var target = document.getElementById(elementId);
+        var scrollContainer = target;
+        do {
+            scrollContainer = scrollContainer.parentNode;
+            if (!scrollContainer) return;
+            scrollContainer.scrollTop += 1;
+        } while (scrollContainer.scrollTop == 0);
+
+        var targetY = 0;
+        do {
+            if (target == scrollContainer) break;
+            targetY += target.offsetTop;
+        } while (target = target.offsetParent);
+
+        var pixelsPerStep = Math.max(MIN_PIXELS_PER_STEP,
+                (targetY - scrollContainer.scrollTop) / MAX_SCROLL_STEPS);
+
+        var stepFunc = function () {
+            scrollContainer.scrollTop =
+                    Math.min(targetY, pixelsPerStep + scrollContainer.scrollTop);
+
+            if (scrollContainer.scrollTop >= targetY) {
+                return;
+            }
+
+            window.requestAnimationFrame(stepFunc);
+        };
+
+        window.requestAnimationFrame(stepFunc);
+    }
+</script>
+</body>
+</html>
