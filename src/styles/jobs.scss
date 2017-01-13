@@ -67,6 +67,7 @@ header {
 
 article {
   padding: 20px;
+  min-height: 100%;
 }
 
 footer {
@@ -89,4 +90,10 @@ footer {
       content: 'O';
     }
   }
+}
+
+.job-item {
+  text-align: center;
+  padding: 4px 10px;
+  margin: 4px;
 }

@@ -46,8 +46,10 @@ gulp.task('build', function () {
             .pipe(inject(jobStyleStream, {
                 ignorePath: 'dist/',
                 addRootSlash: false,
+                addPrefix: '../'
             }))
             .pipe(injectString.replace('@@TITLE@@', job.title))
+            .pipe(injectString.replace('@@BYLINE@@', `<small>Palo Alto, CA - Engineering - Full-Time</small>`))
             .pipe(inject(gulp.src([path.join('./src/pages/jobs/', job.path)]), {
                 addRootSlash: false,
                 starttag: '<!-- inject:body:html -->',
@@ -57,23 +59,34 @@ gulp.task('build', function () {
                 }
             }))
             .pipe(rename(job.path))
-            .pipe(gulp.dest('./dist')));
+            .pipe(gulp.dest('./dist/jobs')));
 
         jobPagePathsMap[job.path] = job
     }
 
-    return index_stream
-        .pipe(inject(es.merge(jobPageStreams), {
+    gulp.src(['./src/pages/jobs/template.html'])
+        .pipe(rename('index.html'))
+        .pipe(inject(jobStyleStream, {
             ignorePath: 'dist/',
             addRootSlash: false,
-            starttag: '<!-- inject:jobs:html -->',
+            addPrefix: '../'
+        }))
+        .pipe(injectString.replace('@@TITLE@@', 'Postings'))
+        .pipe(injectString.replace('@@BYLINE@@', `${jobs.length} Job Postings`))
+        .pipe(inject(es.merge(jobPageStreams), {
+            ignorePath: 'dist/jobs/',
+            addRootSlash: false,
+            starttag: '<!-- inject:body:html -->',
             transform: function (filePath, file) {
                 // return file contents as string
+
                 let job = jobPagePathsMap[filePath]
                 return `<div class="job-item"><a href="${filePath}" target="_blank">${job.title}</a></div>`
             }
         }))
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('./dist/jobs'));
+
+    return index_stream.pipe(gulp.dest('./dist'));
 });
 
 copy('./node_modules/font-awesome/fonts/**/*', './dist/fonts');
