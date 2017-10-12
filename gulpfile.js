@@ -59,7 +59,7 @@ gulp.task('build', function () {
                 }
             }))
             .pipe(rename(job.path))
-            .pipe(gulp.dest('./dist/jobs')));
+            .pipe(gulp.dest('./dist/jobpostings')));
 
         jobPagePathsMap[job.path] = job
     }
@@ -74,7 +74,7 @@ gulp.task('build', function () {
         .pipe(injectString.replace('@@TITLE@@', 'Postings'))
         .pipe(injectString.replace('@@BYLINE@@', `${jobs.length} Job Postings`))
         .pipe(inject(es.merge(jobPageStreams), {
-            ignorePath: 'dist/jobs/',
+            ignorePath: 'dist/jobpostings/',
             addRootSlash: false,
             starttag: '<!-- inject:body:html -->',
             transform: function (filePath, file) {
@@ -84,7 +84,7 @@ gulp.task('build', function () {
                 return `<div class="job-item"><a href="${filePath}" target="_blank">${job.title}</a></div>`
             }
         }))
-        .pipe(gulp.dest('./dist/jobs'));
+        .pipe(gulp.dest('./dist/jobpostings'));
 
     return index_stream.pipe(gulp.dest('./dist'));
 });

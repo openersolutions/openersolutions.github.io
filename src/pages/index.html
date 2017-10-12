@@ -28,36 +28,12 @@
     <!-- endinject -->
 </head>
 <body>
+<div class="bg"></div>
 <header>
-    <div class="bg"></div>
 
     <div class="header">
         <h1>Opener</h1>
-        <div class="tagline">
-            <h2>Soar with us</h2>
-            <h3>We're a passionate team advancing the future of aviation.</h3>
-        </div>
-        <div class="arrow" onclick="smoothScroll('about-us')"></div>
-    </div>
-</header>
-<!--
-<section class="jobs" id="jobs">
-    <div class="jobs-section-container">
-        <h4>We're hiring</h4>
-        <div>
--->
-            <!-- inject:jobs:html -->
-
-            <!-- endinject -->
-<!--
-        </div>
-    </div>
-</section>
--->
-<section class="about-us" id="about-us">
-    <div>
-        <h4>About us</h4>
-        <div>
+        <div class="info">
             <p>
                 We are a small company innovating at the leading edge of UAV technology, poised to transform the
                 industry.
@@ -68,54 +44,28 @@
                 environment.
             </p>
             <p>
-                Join us and influence the future of aviation.
+                <a href="mailto:info@openersolutions.com" title="info@openersolutions.com">
+                    Join us and influence the future of aviation</a>.
             </p>
-            <div class="contact">
-                <a href="mailto:info@openersolutions.com" title="info@openersolutions.com">info@openersolutions.com</a>
-            </div>
+        </div>
+    </div>
+</header>
+<!--
+<section class="jobs" id="jobs">
+    <div class="jobs-section-container">
+        <h4>We're hiring</h4>
+        <div>
+-->
+<!-- inject:jobs:html -->
+
+<!-- endinject -->
+<!--
         </div>
     </div>
 </section>
+-->
 
-<footer>
-    <a class="logotype"></a>
-</footer>
 <!-- inject:js -->
 <!-- endinject -->
-<script type="text/javascript">
-    var smoothScroll = function (elementId) {
-        var MIN_PIXELS_PER_STEP = 16;
-        var MAX_SCROLL_STEPS = 30;
-        var target = document.getElementById(elementId);
-        var scrollContainer = target;
-        do {
-            scrollContainer = scrollContainer.parentNode;
-            if (!scrollContainer) return;
-            scrollContainer.scrollTop += 1;
-        } while (scrollContainer.scrollTop == 0);
-
-        var targetY = 0;
-        do {
-            if (target == scrollContainer) break;
-            targetY += target.offsetTop;
-        } while (target = target.offsetParent);
-
-        var pixelsPerStep = Math.max(MIN_PIXELS_PER_STEP,
-                (targetY - scrollContainer.scrollTop) / MAX_SCROLL_STEPS);
-
-        var stepFunc = function () {
-            scrollContainer.scrollTop =
-                    Math.min(targetY, pixelsPerStep + scrollContainer.scrollTop);
-
-            if (scrollContainer.scrollTop >= targetY) {
-                return;
-            }
-
-            window.requestAnimationFrame(stepFunc);
-        };
-
-        window.requestAnimationFrame(stepFunc);
-    }
-</script>
 </body>
 </html>
